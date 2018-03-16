@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const port = 3000;
+const port = process.env.PORT;
 
 // from top level path e.g. localhost:3000, this response will be sent
 app.get('/', (request, response) => response.send('Hello World'));
