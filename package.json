@@ -1,0 +1,14 @@
+{
+  "name": "servertest",
+  "version": "1.0.0",
+  "description": "rest service for crash report storage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andreyn",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.16.3"
+  }
+}
