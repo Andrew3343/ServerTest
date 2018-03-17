@@ -80,8 +80,8 @@ const url = require('url');
 //});
 
 router.post('/crashreports', (request, response) => {
-    console.log(request.body.toString());
-    var arr = JSON.parse(request.body);
+    console.log(request);
+    var arr = JSON.parse(request);
     var descList = '';
     for (var i = 0; i < arr.length; i++)
     {
