@@ -7,7 +7,7 @@ const port = process.env.PORT;
 const { Client } = require('pg');
 
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -83,7 +83,7 @@ const url = require('url');
 //});
 
 router.post('/crashreports', (request, response) => {  
-    var arr = request.body.data;
+    var arr = request.body;
     console.log(arr);
     var descList = '';
     for (var i = 0; i < arr.length; i++)
