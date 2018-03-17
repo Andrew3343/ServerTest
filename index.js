@@ -80,7 +80,18 @@ const url = require('url');
 //});
 
 router.post('/crashreports', (request, response) => {
-    var sql = 'INSERT INTO items (exceptionDescription) VALUES (unnest(ARRAY[\'report1\', \'report2\', \'report3\'])) RETURNING id';
+    var arr = JSON.parse(request.body.toString());
+    var descList::String = '';
+    for (var i = 0; i < arr.length; i++)
+    {
+        if (i > 0)
+        {
+            descList = descList + ', '
+        }
+        descList = descList + arr[i].description.toString();
+    }
+    // \'report1\', \'report2\', \'report3\'
+    var sql = 'INSERT INTO items (exceptionDescription) VALUES (unnest(ARRAY[' + descList + '])) RETURNING id';
     
     client2.query(sql, (err, result) =>
     {
