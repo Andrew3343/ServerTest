@@ -87,8 +87,8 @@ router.post('/crashreports', (request, response) => {
         if (err) 
         {
             console.error(err);
-            res.statusCode = 500;
-            return res.json({
+            response.statusCode = 500;
+            return response.json({
             errors: ['Failed to post reports']
             });
         }
