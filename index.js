@@ -16,8 +16,11 @@ client.connect((err) => {
     console.error('connection error', err.stack);
   } else {
     console.log('connected');
-    const query = client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(40) not null)');
-    client.end();
+    client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(40) not null)', (err, res) => {
+      if (err) throw err
+      console.log(res)
+      client.end()
+    })
   }
 });
 
