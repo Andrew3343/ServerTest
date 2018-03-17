@@ -6,6 +6,9 @@ const port = process.env.PORT;
 
 const { Client } = require('pg');
 
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended: true}));
+
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true
@@ -79,9 +82,9 @@ const url = require('url');
 //  response.json({message: myResponse});
 //});
 
-router.post('/crashreports', (request, response) => {
-    console.log(request);
-    var arr = JSON.parse(request);
+router.post('/crashreports', (request, response) => {  
+    var arr = request.body.data;
+    console.log(arr);
     var descList = '';
     for (var i = 0; i < arr.length; i++)
     {
