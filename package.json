@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "express": "^4.16.3"
+  },
+  "dependencies": {
+    "pg": "^7.4.1"
   }
 }
