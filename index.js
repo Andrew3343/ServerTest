@@ -48,7 +48,7 @@ app.get('/', (request, response) =>
 {
     client2.query('SELECT * FROM items', (err, res) => {
       if (err) throw err;
-      response.send(res);
+      response.send(res.rows);
 //      client2.end();
     });
     
@@ -68,13 +68,30 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const url = require('url');
 
-router.get('/stuff', (request, response) => {
-  var urlParts = url.parse(request.url, true);
-  var parameters = urlParts.query;
-  var myParam = parameters.myParam;
-  // e.g. myVenues = 12;
-  
-  var myResponse = `I multiplied the number you gave me (${myParam}) by 5 and got: ${myParam * 5}`;
-  
-  response.json({message: myResponse});
+//router.get('/stuff', (request, response) => {
+//  var urlParts = url.parse(request.url, true);
+//  var parameters = urlParts.query;
+//  var myParam = parameters.myParam;
+//  // e.g. myVenues = 12;
+//  
+//  var myResponse = `I multiplied the number you gave me (${myParam}) by 5 and got: ${myParam * 5}`;
+//  
+//  response.json({message: myResponse});
+//});
+
+router.post('/crashreports', (request, response) => {
+    var sql = 'INSERT INTO items (exceptonDescription) VALUES (unnest(array["report1", "report2", "report3"])) RETURNING id';
+    
+    client2.query(sql, (err, result) =>
+    {
+        if (err) 
+        {
+            console.error(err);
+            res.statusCode = 500;
+            return res.json({
+            errors: ['Failed to post reports']
+            });
+        }
+        response.send(res.rows)
+    }
 });
