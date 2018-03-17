@@ -4,7 +4,7 @@ const app = express();
 const router = express.Router();
 const port = process.env.PORT;
 
-const pg = require('pg');
+const { Client } = require('pg');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
