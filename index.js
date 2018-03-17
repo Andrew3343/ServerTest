@@ -17,9 +17,15 @@ client.connect((err) => {
   } else {
     console.log('connected');
     client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(4000) not null)', (err, res) => {
-      if (err) throw err
-      console.log(res)
-      client.end()
+        if (err) throw err
+        console.log(res)
+        client.end((err) => 
+        {
+            console.log('client has disconnected')
+            if (err) {
+            console.log('error during disconnection', err.stack)
+            }
+        })
     })
   }
 });
