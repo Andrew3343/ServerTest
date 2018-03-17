@@ -80,7 +80,7 @@ const url = require('url');
 //});
 
 router.post('/crashreports', (request, response) => {
-    var sql = 'INSERT INTO items (exceptionDescription) VALUES (unnest(ARRAY["report1", "report2", "report3"])) RETURNING id';
+    var sql = 'INSERT INTO items (exceptionDescription) VALUES (unnest(ARRAY['report1', 'report2', 'report3'])) RETURNING id';
     
     client2.query(sql, (err, result) =>
     {
