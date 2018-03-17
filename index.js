@@ -92,6 +92,6 @@ router.post('/crashreports', (request, response) => {
             errors: ['Failed to post reports']
             });
         }
-        response.send(res.rows)
-    }
+        response.send(res.rows);
+    });
 });
