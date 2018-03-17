@@ -94,6 +94,7 @@ router.post('/crashreports', (request, response) => {
         }
         descList = descList + arr[i].description.toString();
     }
+    console.log(descList);
     // \'report1\', \'report2\', \'report3\'
     var sql = 'INSERT INTO items (exceptionDescription) VALUES (unnest(ARRAY[' + descList + '])) RETURNING id';
     
