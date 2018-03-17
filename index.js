@@ -30,13 +30,26 @@ client.connect((err) => {
   }
 });
 
+const client2 = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
+client2.connect((err) => {
+  if (err) {
+    console.error('connection error', err.stack);
+  } else {
+    console.log('client2 connected');
+  }
+});
+
 // from top level path e.g. localhost:3000, this response will be sent
 app.get('/', (request, response) => 
 {
-    client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+    client2.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
       if (err) throw err;
       response.send(res);
-      client.end();
+//      client2.end();
     });
     
 });
