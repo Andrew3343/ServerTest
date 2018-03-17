@@ -4,6 +4,20 @@ const app = express();
 const router = express.Router();
 const port = process.env.PORT;
 
+const pg = require('pg');
+const connectionString = process.env.DATABASE_URL;
+
+const client = new pg.Client(connectionString);
+client.connect((err) => {
+  if (err) {
+    console.error('connection error', err.stack);
+  } else {
+    console.log('connected');
+    const query = client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(40) not null)');
+    query.on('end', () => { client.end(); });
+  }
+});
+
 // from top level path e.g. localhost:3000, this response will be sent
 app.get('/', (request, response) => response.send('Hello World'));
 
