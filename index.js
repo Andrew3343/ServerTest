@@ -25,7 +25,16 @@ client.connect((err) => {
 });
 
 // from top level path e.g. localhost:3000, this response will be sent
-app.get('/', (request, response) => response.send('Hello World'));
+app.get('/', (request, response) => 
+{
+    client.connect();
+    client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+      if (err) throw err;
+      response.send(res);
+      client.end();
+    });
+    
+});
 
 // all routes prefixed with /api
 app.use('/api', router);
