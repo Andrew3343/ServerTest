@@ -16,7 +16,7 @@ client.connect((err) => {
     console.error('connection error', err.stack);
   } else {
     console.log('connected');
-    client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(40) not null)', (err, res) => {
+    client.query('CREATE TABLE IF NOT EXISTS items(id SERIAL PRIMARY KEY, exceptionDescription VARCHAR(4000) not null)', (err, res) => {
       if (err) throw err
       console.log(res)
       client.end()
