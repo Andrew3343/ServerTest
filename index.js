@@ -92,7 +92,7 @@ router.post('/crashreports', (request, response) => {
         {
             descList = descList + ', '
         }
-        descList = descList + '\'' + arr[i] + '\'';
+        descList = descList + '\'' + JSON.stringify(arr[i]) + '\'';
     }
     console.log(descList);
     // \'report1\', \'report2\', \'report3\'
