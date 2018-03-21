@@ -92,8 +92,7 @@ router.post('/crashreports', (request, response) => {
         {
             descList = descList + ', '
         }
-        var jObject = {"Report description" : arr[i]};
-        descList = descList + '\'' + JSON.stringify(jObject["Report description"]) + '\'';
+        descList = descList + '\'' + JSON.stringify(arr[i]) + '\'';
     }
     console.log(descList);
     // \'report1\', \'report2\', \'report3\'
